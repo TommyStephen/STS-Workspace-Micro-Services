@@ -1,0 +1,11 @@
+spring.application.name=SpringCloudGateway
+server.port=8080
+
+
+spring.cloud.gateway.routes.id=customerModule
+spring.cloud.gateway.routes[0].uri=http://localhost:8081/
+spring.cloud.gateway.routes[0].predicates[0]=Path=/customer/**
+
+spring.cloud.gateway.routes[1].id=employeeModule
+spring.cloud.gateway.routes[1].uri=http://localhost:8082/
+spring.cloud.gateway.routes[1].predicates[0]=Path=/employee/**

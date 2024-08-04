@@ -1,0 +1,5 @@
+package study.dto;
+
+public class Product {
+
+}

@@ -1,0 +1,18 @@
+spring.application.name=SpringCloudGateway
+server.port=8080
+
+
+#ROUTING IS DONE USING JAVA CONFIGURATION
+
+spring.cloud.gateway.routes[0].id=customerModule
+spring.cloud.gateway.routes[0].uri=http://localhost:8081/
+spring.cloud.gateway.routes[0].predicates[0]=Path=/customer/**
+spring.cloud.gateway.routes[0].filters[0]=AddRequestHeader=first-request, first-request-header
+spring.cloud.gateway.routes[0].filters[1]=AddResponseHeader=first-response, first-response-header
+
+
+spring.cloud.gateway.routes[1].id=employeeModule
+spring.cloud.gateway.routes[1].uri=http://localhost:8082/
+spring.cloud.gateway.routes[1].predicates[0]=Path=/employee/**
+spring.cloud.gateway.routes[1].filters[0]=AddRequestHeader=second-request, second-request-header
+spring.cloud.gateway.routes[1].filters[1]=AddResponseHeader=second-response, second-response-header

@@ -1,0 +1,5 @@
+package study.DTO;
+
+public class ChildDTO {
+
+}

@@ -1,0 +1,29 @@
+package study;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.context.annotation.Bean;
+
+import reactor.core.publisher.Mono;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class SpringCloudGatewayApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringCloudGatewayApplication.class, args);
+	}
+	
+	@Bean
+	GlobalFilter globalFilter() {
+		return (exchange, chain) -> {
+			System.out.println("First Global filter");
+			return chain.filter(exchange).then(Mono.fromRunnable(() -> {
+				System.out.println("Second Global filter");
+			}));
+		};
+	}
+
+}

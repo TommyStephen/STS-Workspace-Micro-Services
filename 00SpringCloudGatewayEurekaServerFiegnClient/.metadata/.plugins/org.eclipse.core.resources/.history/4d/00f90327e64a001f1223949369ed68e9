@@ -1,0 +1,15 @@
+package study.feignClient;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import study.dto.Product;
+
+@FeignClient(name = "ProductService")
+public interface ProductClient {
+	@PostMapping("/product/findById/{id}")
+	Product getProductById(@PathVariable Long productId);
+
+	
+}

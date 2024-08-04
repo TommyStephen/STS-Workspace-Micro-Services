@@ -1,0 +1,5 @@
+package study.entity;
+
+public class Child {
+
+}

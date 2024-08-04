@@ -1,0 +1,9 @@
+package study.feignClient;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(name = "productService", url = "http://localhost:8080")
+public interface ProductClient {
+
+	
+}

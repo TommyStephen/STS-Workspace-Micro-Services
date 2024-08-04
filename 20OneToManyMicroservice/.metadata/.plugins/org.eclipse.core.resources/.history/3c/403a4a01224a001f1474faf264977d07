@@ -1,0 +1,33 @@
+package study.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import study.entity.Child;
+import study.repository.ChildRepository;
+
+@RestController
+@RequestMapping("/children")
+public class ChildController {
+
+	@Autowired
+    private ChildRepository childRepository;
+
+    @GetMapping("/by-parent/{parentId}")
+    public List<ChildDTO> getChildrenByParentId(@PathVariable("parentId") Long parentId) {
+        List<Child> children = childRepository.findByParentId(parentId);
+        return children.stream().map(child -> {
+            ChildDTO dto = new ChildDTO();
+            dto.setId(child.getId());
+            dto.setName(child.getName());
+            dto.setDob(child.getDob());
+            dto.setSalary(child.getSalary());
+            return dto;
+        }).collect(Collectors.toList());
+    }
+}

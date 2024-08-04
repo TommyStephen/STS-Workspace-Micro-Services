@@ -1,0 +1,14 @@
+package study.controller;
+
+@RestController
+@RequestMapping("/children")
+public class ChildController {
+
+    @Autowired
+    private ChildRepository childRepository;
+
+    @GetMapping("/by-parent/{parentId}")
+    public List<Child> getChildrenByParentId(@PathVariable("parentId") Long parentId) {
+        return childRepository.findByParentId(parentId);
+    }
+}
